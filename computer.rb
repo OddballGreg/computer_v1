@@ -10,5 +10,4 @@ unless ARGV[0].match /.+ = .+/
 end
 
 polynomial = Polynomial.new(ARGV[0])
-# polynomial.resolve
-polynomial.present
+polynomial.resolve
