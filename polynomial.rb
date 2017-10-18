@@ -5,8 +5,8 @@ class Polynomial
     @expression[:lhs] = equation.split('=').first
     @expression[:rhs] = equation.split('=').last
 
-    @expression[:lhs] = @expression[:lhs].scan(/(?:[\+\-] ?)*(?:\d?|\d?\.\d?) \* (?:\w\^\d?)*/)
-    @expression[:rhs] = @expression[:rhs].scan(/(?:[\+\-] ?)*(?:\d?|\d?\.\d?) \* (?:\w\^\d?)*/)
+    @expression[:lhs] = @expression[:lhs].scan(/(?:[\+\-] ?)*(?:\d?|\d?\.\d?) \* (?:\w *\^ *\d?)*/)
+    @expression[:rhs] = @expression[:rhs].scan(/(?:[\+\-] ?)*(?:\d?|\d?\.\d?) \* (?:\w *\^ *\d?)*/)
     @expression[:lhs].each_with_index{|v, i| expression[:lhs][i] = Expression.new(v)}
     @expression[:rhs].each_with_index{|v, i| expression[:rhs][i] = Expression.new(v)}
   end
@@ -36,7 +36,7 @@ class Polynomial
         new_expression_list << Expression.new("#{ value.positive? ? '+' : '-'} #{value.abs} * #{temp_exp_set[0].variables.first[0]}^#{temp_exp_set[0].variables.first[1]}")
       end
     end
-    @expression[:lhs] = new_expression_list
+    @expression[:lhs] = new_expression_list.reverse
     print "Reduced Form: "
     @expression[:lhs].each {|v| print "#{v.sign} #{v.expression} "}
     print "= 0\n"
@@ -55,8 +55,8 @@ class Polynomial
         puts "Possible Result 2: " + r2.to_s
       end
     elsif equation_degree == 1
-      a = @expression[:lhs][0].multiplier
-      b = @expression[:lhs][1].multiplier
+      a = @expression[:lhs].select{|v| v.degree == 1}[0].multiplier rescue 0
+      b = @expression[:lhs].select{|v| v.degree == 0}[0].multiplier rescue 0
       if a.zero?
         puts "Unsolveable Polynomial"
       else

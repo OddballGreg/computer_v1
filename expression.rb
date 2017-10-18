@@ -11,9 +11,9 @@ class Expression
     @multiplier = 0 - @multiplier if @sign == '-'
 
     @variables = {}
-    @expression.scan(/(\w)\^(\d?)/).map{ |v| @variables[v[0]] = v[1] }
+    @expression.scan(/(\w) *\^ *(\d?)/).map{ |v| @variables[v[0]] = v[1] }
 
-    @degree = @expression.scan(/\w\^(\d?)/).map{ |v| v.first.to_i }.sum
+    @degree = @expression.scan(/\w *\^ *(\d?)/).map{ |v| v.first.to_i }.sum
 
     if @degree > 2
       puts "Polynomial Degree too high for '#{@expression}'. Cannot Resolve."
