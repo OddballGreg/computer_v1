@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require './expression.rb'
 require './polynomial.rb'
+require './math.rb'
 require 'pry'
 require 'awesome_print'
 

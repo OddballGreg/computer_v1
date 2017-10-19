@@ -49,8 +49,8 @@ class Polynomial
       if ((b * b) - 4.0 * a * c).negative? || a.zero?
         puts "Unsolveable Polynomial"
       else
-        r1 = ((b * -1.0) + Math.sqrt((b * b) - 4.0 * a * c)) / (2.0 * a)
-        r2 = ((b * -1.0) - Math.sqrt((b * b) - 4.0 * a * c)) / (2.0 * a)
+        r1 = ((b * -1.0) + MyMath.sqrt((b * b) - 4.0 * a * c)) / (2.0 * a)
+        r2 = ((b * -1.0) - MyMath.sqrt((b * b) - 4.0 * a * c)) / (2.0 * a)
         puts "Possible Result 1: " + r1.to_s
         puts "Possible Result 2: " + r2.to_s
       end
