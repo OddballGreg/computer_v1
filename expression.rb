@@ -31,4 +31,18 @@ class Expression
     @multiplier *= -1
     return self 
   end
+
+  def derivative
+    fx = self
+    fx.multiplier *= fx.degree
+    fx.degree -= 1
+    # fx.expression =
+    fx
+  end
+
+  def derivative!
+    self.multiplier *= fx.degree
+    self.degree -= 1
+    # self.expression =
+  end
 end
