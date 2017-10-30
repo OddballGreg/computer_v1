@@ -45,12 +45,17 @@ class Polynomial
       a = @expression[:lhs].select{|v| v.degree == 2}[0].multiplier rescue 0
       b = @expression[:lhs].select{|v| v.degree == 1}[0].multiplier rescue 0
       c = @expression[:lhs].select{|v| v.degree == 0}[0].multiplier rescue 0
+      discriminant = ((b * b) - 4.0 * a * c)
 
-      if ((b * b) - 4.0 * a * c).negative? || a.zero?
+      puts "Discriminant = #{discriminant} and is strictly positive" if discriminant.positive? 
+      puts "Discriminant = #{discriminant} and is strictly negative" if discriminant.negative? 
+      puts "Discriminant = #{discriminant} and is null" if discriminant.zero? 
+
+      if discriminant.negative? || a.zero?
         puts "Unsolveable Polynomial"
       else
-        r1 = ((b * -1.0) + Math.sqrt((b * b) - 4.0 * a * c)) / (2.0 * a)
-        r2 = ((b * -1.0) - Math.sqrt((b * b) - 4.0 * a * c)) / (2.0 * a)
+        r1 = ((b * -1.0) + MyMath.sqrt(discriminant)) / (2.0 * a)
+        r2 = ((b * -1.0) - MyMath.sqrt(discriminant)) / (2.0 * a)
         puts "Possible Result 1: " + r1.to_s
         puts "Possible Result 2: " + r2.to_s
       end
