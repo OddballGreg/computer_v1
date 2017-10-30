@@ -33,7 +33,12 @@ class Polynomial
       temp_exp_set.each { |exp| value += exp.multiplier.to_f }
       
       unless temp_exp_set.empty?
-        new_expression_list << Expression.new("#{ value.positive? ? '+' : '-'} #{value.abs} * #{temp_exp_set[0].variables.first[0]}^#{temp_exp_set[0].variables.first[1]}")
+        new_expression_list << Expression.new(
+          {expression: "#{value.abs} * #{temp_exp_set[0].variables.first[0]}^#{temp_exp_set[0].variables.first[1]}", 
+          sign: value.positive? ? '+' : '-',
+          multiplier: value,
+          variables: temp_exp_set[0].variables,
+          degree: temp_exp_set[0].variables['X'].to_i})
       end
     end
     @expression[:lhs] = new_expression_list.reverse
@@ -45,7 +50,7 @@ class Polynomial
       a = @expression[:lhs].select{|v| v.degree == 2}[0].multiplier rescue 0
       b = @expression[:lhs].select{|v| v.degree == 1}[0].multiplier rescue 0
       c = @expression[:lhs].select{|v| v.degree == 0}[0].multiplier rescue 0
-      discriminant = ((b * b) - 4.0 * a * c)
+      discriminant = ((b * b) - (4.0 * a * c))
 
       puts "Discriminant = #{discriminant} and is strictly positive" if discriminant.positive? 
       puts "Discriminant = #{discriminant} and is strictly negative" if discriminant.negative? 
