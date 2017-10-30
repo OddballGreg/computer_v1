@@ -6,7 +6,7 @@ class Expression
 
     @expression = @expression.gsub(/^[\-\+] /, '')
 
-    @multiplier = @expression.match(/^(\d?\.\d?|\d?) *\*/)
+    @multiplier = @expression.match(/^([\d\w\+]+\.[\d\w\+]+|[\d\w\+]+) *\*/)
     @multiplier = @multiplier.nil? ? 1 : @multiplier[1].to_f
     @multiplier = 0 - @multiplier if @sign == '-'
 
