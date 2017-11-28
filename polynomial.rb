@@ -57,7 +57,7 @@ class Polynomial
       puts "Discriminant = #{discriminant} and is null" if discriminant.zero? 
 
       if discriminant.negative? || a.zero?
-        puts "Unsolveable Polynomial"
+        puts 'Unsolveable Polynomial'
       else
         r1 = ((b * -1.0) + MyMath.sqrt(discriminant)) / (2.0 * a)
         r2 = ((b * -1.0) - MyMath.sqrt(discriminant)) / (2.0 * a)

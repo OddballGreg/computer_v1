@@ -9,7 +9,6 @@ class Expression
 
       @multiplier = @expression.match(/^([\d\w\+\-]+\.[\d\w\+]+|[\d\w\+\-]+) *\*/)
       @multiplier = @multiplier.nil? ? 1 : @multiplier[1].to_f
-      # @multiplier = 0 - @multiplier if @sign == '-'
 
       @variables = {}
       @expression.scan(/(\w) *\^ *(\d?)/).map{ |v| @variables[v[0]] = v[1] }

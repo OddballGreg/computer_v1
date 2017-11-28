@@ -10,5 +10,5 @@ if ARGV[0].nil? || !ARGV[0].match(/.+ = .+/)
   exit
 end
 
-polynomial = Polynomial.new(ARGV[0])
+polynomial = Polynomial.new(ARGV[0].upcase)
 polynomial.resolve
