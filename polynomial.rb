@@ -5,8 +5,8 @@ class Polynomial
     @expression[:lhs] = equation.split('=').first
     @expression[:rhs] = equation.split('=').last
 
-    @expression[:lhs] = @expression[:lhs].scan(/(?:[\+\-] ?)*(?:\d+|\d+\.\d+) \* (?:\w *\^ *\d+)*/)
-    @expression[:rhs] = @expression[:rhs].scan(/(?:[\+\-] ?)*(?:\d+|\d+\.\d+) \* (?:\w *\^ *\d+)*/)
+    @expression[:lhs] = @expression[:lhs].scan(/(?:[\+\-])*(?:\d+|\d+\.\d+)\*(?:\w\^\d+)*/)
+    @expression[:rhs] = @expression[:rhs].scan(/(?:[\+\-])*(?:\d+|\d+\.\d+)\*(?:\w\^\d+)*/)
     @expression[:lhs].each_with_index{|v, i| expression[:lhs][i] = Expression.new(v)}
     @expression[:rhs].each_with_index{|v, i| expression[:rhs][i] = Expression.new(v)}
   end
